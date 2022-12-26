@@ -61,6 +61,7 @@ summary.restartButton.addEventListener("click", () => {ClickHandler(this.id, () 
     lives = 1;
     level = 1;
     PrepareForGame();
+    summary.Clear();
 
     summary.Hide();
 })});
@@ -83,6 +84,7 @@ summary.menuButton.addEventListener("click", () => {ClickHandler(this.id, () => 
     UpdateFooter();
     setTimeout(() => {ClearFlowchart();}, 1500);
     MainMenu();
+    summary.Clear();
 
     summary.Hide();
 })});
