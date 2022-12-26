@@ -1,0 +1,71 @@
+.tutorial-butt {
+    padding: 0;
+}
+#button0 {
+    z-index: 2;
+}
+
+#tutorial-main {
+    display: block;
+    width: 84.5vh; /*With of table*/
+    height: calc(100% - 2vh);
+    
+    font-size: 1.7vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+    overflow: auto;
+    padding: 2vh;
+    padding-top: 0;
+}
+
+#tutorial-main h1 {
+    text-align: center;
+}
+
+#tutorial-main p {
+    margin: 0;
+    margin-bottom: 2vh;
+}
+#tutorial-main h2 {
+    margin: 0;
+    margin-top: 2vh;
+    font-weight: 100;
+    text-align: left;
+}
+
+#tutorial-main input, #tut-backButton {
+    border: 0.25vh solid white;
+    font-family: Turret Road;
+    background-color: transparent;
+    color: white;
+    font-size: 6vh;
+    padding: 1vh;
+    display: block;
+    margin: auto;
+}
+
+.section-separator {
+    text-align: center !important;
+    margin-bottom: 2vh !important;
+}
+
+.tutwrapper {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+}
+
+.tutwrapper > * {
+    width: 100%;
+}
+
+.tutpic, .tutpic-50 {
+    width: 30%;
+    margin: 2vh;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 0 2vh black;
+    display: block;
+    margin: auto;
+}
+.tutpic-50 {width: 50%;}

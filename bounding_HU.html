@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Time!</title>
+    <style>
+        body {
+            background-color: #000000;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #FFF;
+        }
+        #message {
+            width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(20, 20, 20);
+            border: 2px solid #DDD;       
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        iframe {
+            border: 2px solid #DDD;
+        }
+        a {
+            color: #FFF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <iframe width="1000px" height="750px" src="index.html"></iframe>
+        <div id="message">
+            <h3>Én csak egy doboz vagyok, a játék fentebb van.</h3>
+            <p>Egyetlen feladatom, hogy megőrizzem a játék kompetitív integritását azzal, hogy minden kijelzőn ugyanakkora dobozba helyezem.</p>
+            <a href="index.html">NORMÁL VÁLTOZAT</a> <a onclick="location.reload()" href="">ÚRJATÖLTÉS</a> <a target="_blank" rel="noopener noreferrer" onclick="document.getElementById('message').style.display = 'none'">ÜZENET ELREJTÉSE</a>
+        </div>
+    </div>
+</body>
+</html>

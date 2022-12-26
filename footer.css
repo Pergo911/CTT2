@@ -1,0 +1,26 @@
+#footer {
+    overflow: hidden;
+}
+
+.footerItem {
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    border-left: 0.5vh solid;
+    width: 100%;
+}
+
+.ft-title {
+    font-size: 100%;
+    padding: 0.5vh;
+}
+
+
+#ft-highscore {
+    border-left: none;
+    padding: 0;
+}

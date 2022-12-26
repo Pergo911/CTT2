@@ -1,0 +1,86 @@
+#summaryOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    pointer-events: none;
+}
+
+#summary {
+    width: 40vh;
+    height: 50vh;
+    background-color: rgba(40, 40, 40, 0.9);
+    position: fixed;
+    top: 25%;
+    left: 0;
+    border: 0.5vh solid;
+    border-left: none;
+    pointer-events: all;
+    transform: translateX(-110%);
+    overflow: auto;
+}
+
+#sum-title {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    overflow: hidden;
+    line-height: 10vh;
+    text-align: center;
+    text-shadow: 0 0 1vh #f00;
+    border-bottom: 0.5vh solid;
+    background-color: rgba(40, 40, 40, 1);
+}
+
+
+#sum-options, #sum-content {
+    height: 40vh;
+    width: 100%;
+    overflow: auto;
+    border-bottom: 0.5vh solid;
+    font-size: 70%;
+}
+
+#sum-options-wrapper {
+    width: 90%;
+    height: 30vh;
+    margin: 5vh auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+#sum-options button {
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#sum-content {
+    font-size: 2vh;
+    height: auto;
+}
+.sum-thread {
+    width: 95%;
+    margin: 2vh auto;
+    font-weight: 100;
+}
+.sum-thread h1 {
+    margin: 0;
+    font-size: 2.5vh;
+}
+.sum-thread p {
+    margin: 0;
+}
+.sum-thread b {
+    font-weight: 700;
+}
+
+#sum-content dd {
+    font-weight: 700;
+}

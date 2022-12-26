@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Click the Time! 2</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="flowchart.css">
+    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script src="anime.min.js"></script>
+    
+    <!-- Order matters! -->
+    <script src="options.js" defer></script>
+    <script src="visuals.js" defer></script>
+    <script src="menu.js" defer></script>
+    <script src="play.js" defer></script>
+    <script src="localStorage.js" defer></script>
+    <script src="initialOverlay.js" defer></script>
+    <script src="flowchart.js" defer></script>
+    <script src="summary.js" defer></script>
+    <script src="tutorial.js" defer></script>
+</head>
+
+
+<body>
+    <!-- If the player is on here for the first time, display a brief message. -->
+    <div id="initialOverlay" style="opacity: 0;">
+        <div id="io-left">
+            <div class="io-inner" id="io-inner-left">
+                <h1>Seems like this is your first time here.</h1>
+                <p>Press the button to continue.</p>
+                <button id="io-eng-butt">Continue In English</button>
+            </div>
+        </div>
+        <div id="io-right">
+            <div class="io-inner" id="io-inner-right">
+                <h1>Úgy tűnik, először jársz itt.</h1>
+                <p>Nyomd meg a gombot a folytatáshoz!</p>
+                <button id="io-hun-butt" style="opacity: 30%; cursor: auto;">Folytatás Magyarul</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="summaryOverlay">
+        <div id="summary">
+            <div id="sum-title">GAME OVER</div>
+            
+            
+            <div id="sum-options">
+                <div id="sum-options-wrapper">
+                    <button class="sum-option-butt">Restart</button>
+                    <button class="sum-option-butt">Main Menu</button>
+                    <!-- Button for simpler styles but it's really just a <p>Summary ↓</p> -->
+                    <button class="sum-option-butt" style="border: none; overflow: visible; cursor: default;">Summary ↓</button>
+                </div>
+            </div>
+            
+            
+            <div id="sum-content">
+                
+                <!-- Filled with content at runtime. -->
+                <div id="sum-content-title" class="sum-thread">
+                    <h1>Statistics:</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="invert"></div>
+    <div id="titleOverlay"></div>
+    
+    
+    <div id="header">
+        <div id="mainHUD"><span style="display: block; text-align: center; width: 100%;flex-shrink: 0; flex-grow: 0;"><u>Click the Time! 2</u></span></div>
+    </div>
+    <div id="main">
+        <div class="grid">
+            <div class="grid-elem" id="button0"><button class="tutorial-butt">
+                <div id="tutorial-main" style="opacity: 0;">
+                    
+                    
+                    <h1 style="font-family: Turret road;">Click the Time! 2</h1>
+                    
+                    
+                    <div class="tutwrapper">
+                        <div style="width: 50%;">
+                            <h2>All you need to know:</h2>
+                            <p>After the countdown, click the red button before the timer runs out. The faster you click, the more points you get. The goal is to get to the highest level possible.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-02 220634.png" alt="Picture of the red button you need to click." class="tutpic">
+                    </div>
+                    
+                    <div class="tutwrapper">
+                        <div>
+                            <h2>Phases</h2>
+                            <p>There are 3 phases in each level. Each of these phases has a difference in gameplay. More on them later.</p>
+                        </div>
+                        
+                        <div>
+                            <h2>Levels</h2>
+                            <p>Complete all 3 phases to level up. Each level gives you an additional life, but reduces the time you have to click by 25%. There are infinite levels.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutwrapper" style="align-items: unset;">
+                        <div>
+                            <h2>PHASE 1:</h2>
+                            <p>Survive!</p>
+                            <p>5 rounds. Simply click the button before the timer runs out. Points in this phase are based on the combined percentage score of all the rounds.</p>
+                        </div>
+                        
+                        <div>
+                            <h2>PHASE 2:</h2>
+                            <p>Get a COMBO×5</p>
+                            <p>Score below 60% of the time available to keep your combo, otherwise it will be reset. You get 5 resets, each of them is worth 20 points.</p>
+                        </div>
+                        
+                        <div>
+                            <h2>PHASE 3:</h2>
+                            <p>ButtonRush!</p>
+                            <p>There is no countdown between buttonpushes - continuous mayhem. Push as many buttons as you can. Available time is calculated based on the previous two phases.</p>
+                        </div>
+                    </div>
+
+
+                    <hr>
+                    <h2 class="section-separator">Difficulty levels</h2>
+                    <p>There are 3 difficulty levels: Easy, Normal and Hard. The difficulty level affects the amount of time you have to click in each phase. Note that these are only the initial values, they harden with each level.</p>
+
+                    <div class="tutwrapper">
+                        <div>
+                            <h2>Easy</h2>
+                            <p>Time to click: 02.00s<br>Combo requierement: 01.20s</p>
+                        </div>
+    
+                        <div>
+                            <h2>Normal</h2>
+                            <p>Time to click: 01.00s<br>Combo requierement: 00.60s</p>
+                        </div>
+                        
+                        <div>
+                            <h2>Hard</h2>
+                            <p>Time to click: 00.50s<br>Combo requierement: 00.30s</p>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center;">You can set the difficulty level in the options menu.</p>
+                    
+
+                    <hr>
+                    <h2 class="section-separator">UI</h2>
+
+                    <div class="tutwrapper">
+                        <div>
+                            <h2>Header</h2>
+                            <p>The header is the long bar on the top of the screen. In the menu, it displays what kind of menu you are in; in the game, it displays the game timer.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-04 145724.png" alt="Picture of the header element in-game" class="tutpic-50">
+                    </div>
+
+                    <div class="tutwrapper">
+                        <div>
+                            <h2>Footer</h2>
+                            <p>The footer is on the bottom of the screen. It shows the highscores you have achieved.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-04 145342.png" alt="Picture of the footer element in-game" class="tutpic-50">
+                    </div>
+                    
+                    <div class="tutwrapper">
+                        <div>
+                            <h2>Flowchart</h2>
+                            <p>When the game starts, the footer transforms into the flowchart. It displays information that is immediately relevant during a game, i.e. how many lives you have left and many other things.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-04 145400.png" alt="Picture of the flowchart element in-game" class="tutpic-50">
+                    </div>
+                    
+                    <div class="tutwrapper">
+                        <div style="width: 50%;">
+                            <h2>Pausing</h2>
+                            <p>You can press the "PAUSE" button in the bottom right corner to pause/resume the game. The game can only be paused during countdowns.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-04 145448.png" alt="Picture of the available pause button in-game" class="tutpic" style="width: 20%;">
+                        <img src="tutpics/Screenshot 2022-10-04 145429.png" alt="Picture of the unavailable pause button in-game" class="tutpic" style="width: 20%;">
+                    </div>
+                    
+                    <h2>Title</h2>
+                    <p>The title is the big text in the middle of the screen. It displays important information that you immediately need to know.</p>
+
+
+                    <div class="tutwrapper">
+                        <div style="width: 50%">
+                            <h2>Summary</h2>
+                            <p>After the game is over, the summary screen will appear. It's a way to exit/restart your game, but if you scroll down, there is detailed information about your game, and a breakdown of all the phases you went through.</p>
+                        </div>
+                        <img src="tutpics/Screenshot 2022-10-04 150919.png" alt="Picture of the summary screen in-game" class="tutpic">
+                    </div>
+
+                
+                    <hr>
+                    <p class="section-separator">That's all for now. Good luck!</p>
+                    
+                    <input type="button" value="Main Menu" id="tut-backButton">
+                </div>
+            </button></div>
+            <div class="grid-elem" id="button1"><button></button></div>
+            <div class="grid-elem" id="button2"><button></button></div>
+            <div class="grid-elem" id="button3" style="z-index: 1;"><button class="spec-butt" id="spec-butt-1"></button></div>
+            <div class="grid-elem" id="button4"><button></button></div>
+            <div class="grid-elem" id="button5"><button></button></div>
+            <div class="grid-elem" id="button6"><button></button></div>
+            <div class="grid-elem" id="button7"><button></button></div>
+            <div class="grid-elem" id="button8"><button></button></div>
+            <div class="grid-elem" id="button9"><button></button></div>
+            <div class="grid-elem" id="button10"><button></button></div>
+            <div class="grid-elem" id="button11"><button></button></div>
+            <div class="grid-elem" id="button12" style="z-index: 1;"><button class="spec-butt" id="spec-butt-2"></button></div>
+            <div class="grid-elem" id="button13"><button></button></div>
+            <div class="grid-elem" id="button14"><button></button></div>
+            <div class="grid-elem" id="button15"><button></button></div>
+            <div class="grid-elem" id="button16"><button></button></div>
+            <div class="grid-elem" id="button17"><button></button></div>
+            <div class="grid-elem" id="button18"><button></button></div>
+            <div class="grid-elem" id="button19"><button></button></div>
+            <div class="grid-elem" id="button20"><button></button></div>
+            <div class="grid-elem" id="button21" style="z-index: 1;"><button class="spec-butt" id="spec-butt-3"></button></div>
+            <div class="grid-elem" id="button22"><button></button></div>
+            <div class="grid-elem" id="button23"><button></button></div>
+            <div class="grid-elem" id="button24"><button></button></div>
+            <div class="grid-elem" id="button25"><button></button></div>
+            <div class="grid-elem" id="button26"><button></button></div>
+            <div class="grid-elem" id="button27"><button></button></div>
+            <div class="grid-elem" id="button28"><button></button></div>
+            <div class="grid-elem" id="button29"><button></button></div>
+            <div class="grid-elem" id="button30" style="z-index: 1;"><button class="spec-butt" id="spec-butt-4"></button></div>
+            <div class="grid-elem" id="button31"><button></button></div>
+            <div class="grid-elem" id="button32"><button></button></div>
+            <div class="grid-elem" id="button33"><button></button></div>
+            <div class="grid-elem" id="button34"><button></button></div>
+            <div class="grid-elem" id="button35"><button></button></div>
+            <div class="grid-elem" id="button36"><button></button></div>
+            <div class="grid-elem" id="button37"><button></button></div>
+            <div class="grid-elem" id="button38"><button></button></div>
+            <div class="grid-elem" id="button39" style="z-index: 1;"><button class="spec-butt" id="spec-butt-5"></button></div>
+            <div class="grid-elem" id="button40"><button></button></div>
+            <div class="grid-elem" id="button41"><button></button></div>
+            <div class="grid-elem" id="button42"><button></button></div>
+            <div class="grid-elem" id="button43"><button></button></div>
+            <div class="grid-elem" id="button44"><button></button></div>
+            <div class="grid-elem" id="button45"><button></button></div>
+            <div class="grid-elem" id="button46"><button></button></div>
+            <div class="grid-elem" id="button47"><button></button></div>
+            <div class="grid-elem" id="button48" style="z-index: 1;"><button class="spec-butt" id="spec-butt-6"></button></div>
+            <div class="grid-elem" id="button49"><button></button></div>
+            <div class="grid-elem" id="button50"><button></button></div>
+            <div class="grid-elem" id="button51"><button></button></div>
+            <div class="grid-elem" id="button52"><button></button></div>
+            <div class="grid-elem" id="button53"><button></button></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerItem" id="ft-highscore">
+            <div class="ft-title">Highscore:</div>
+            <div class="ft-wrapper">
+                <div>
+                    <div>PHASE1:&nbsp;
+                        <div style="display: inline;" id="ft-highscore-p1">0p</div>
+                    </div>
+                </div>
+                <div>
+                    <div>PHASE2:&nbsp;
+                        <div style="display: inline;" id="ft-highscore-p2">0p</div>
+                    </div>
+                </div>
+                <div>
+                    <div>PHASE3:&nbsp;
+                        <div style="display: inline;" id="ft-highscore-p3">0btn</div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+        <div class="footerItem">Max level: LVL<span id="ft-maxLevel-l">0</span> PHASE<span id="ft-maxLevel-p">0</span></div>
+        <div class="footerItem">Games played: <span id="ft-gamesPlayed">0</span></div>
+    </div>
+    
+    
+    <!-- circle, tick and cross symbol reference: ⬤ ✓ ✖ -->
+    <div id="flowchart" style="opacity: 0%;">
+        
+        <div id="fc_lvl" class="fc-spec-item">
+            
+            <div class="fc-item-wrapper" style="height: 65%;">
+                <div style="height: 100%; width: 100%; font-size: 150%; border-bottom: 0.2vh solid; display: flex; align-items: center; justify-content: center;">
+                    <div>LVL</div>
+                    <div id="fc-lvl-span">1</div><span>:</span>
+                </div>
+                <div style="height: 100%; width: 100%; font-size: 80%; border-bottom: 0.2vh solid; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 0.25vh solid;">
+                    <div id="fc-timeToClick-span">00.00<small>s</small></div>
+                    <div id="fc-comboTime-span">00.00<small>s</small></div>
+                </div>
+            </div>
+            
+            <div class="fc-item-wrapper" style="height: 35%;">
+                <div style="height: 100%; width: 100%; font-size: 100%; display: flex; align-items: center; justify-content: center; border-top: 0.25vh solid;">
+                    <div>LIVES:&nbsp;</div>
+                    <div id="fc-lives-span">1</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="fc_phase1" class="fc-item">
+            <div class="fc-bgdiv-cover"></div>
+            <div class="fc-bgdiv">PHASE 1</div>
+            
+            <div class="fc-item-wrapper">
+                <div class="fc-ph1-item">⬤</div>
+                <div class="fc-ph1-item">⬤</div>
+                <div class="fc-ph1-item">⬤</div>
+                <div class="fc-ph1-item">⬤</div>
+                <div class="fc-ph1-item">⬤</div>
+            </div>
+            
+            <div class="fc-item-wrapper">
+                <span>Avr. time: <span id="avr-time-span">00.00</span><small>s</small></span>
+            </div>
+        </div>
+        
+        <div id="fc_phase2" class="fc-item">
+            <div class="fc-bgdiv-cover"></div>
+            <div class="fc-bgdiv">PHASE 2</div>
+            
+            <div class="fc-item-wrapper">
+                <div class="fc-ph2-item">⬤</div>
+                <div class="fc-ph2-item">⬤</div>
+                <div class="fc-ph2-item">⬤</div>
+                <div class="fc-ph2-item">⬤</div>
+                <div class="fc-ph2-item">⬤</div>
+            </div>
+            
+            <div class="fc-item-wrapper">
+                <span><div style="display: inline-block;">Remaining resets:&nbsp;</div><div id="combo-resets-span" style="display: inline-block;">0</div></span>
+            </div>
+        </div>
+        
+        <div id="fc_phase3" class="fc-item">
+            <div class="fc-bgdiv-cover"></div>
+            <div class="fc-bgdiv">PHASE 3</div>
+            
+            <div class="fc-item-wrapper">
+                <span><div style="display: inline-block">Buttons hit:&nbsp;</div><span id="buttons-hit-span">0</span></span>
+            </div>
+            <div class="fc-item-wrapper">
+                <span>Speed: <span id="bps-span">0.00</span><small>bps</small></span>
+            </div>
+        </div>
+        
+        <div id="fc_pause" class="fc-spec-item">
+            <div class="fc-spec-bgdiv">■</div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        Script for animating the page as it loads up.
+        */
+       
+       var initialTimeline = anime.timeline({
+           easing: "easeOutExpo",
+           duration: 1000,
+           autoplay: false,
+        })
+
+        initialTimeline.add({
+            targets: "#mainHUD > span",
+            translateY: ["-10vh", "0"],
+            opacity: [0, 1],
+        }, 0)
+        initialTimeline.add({
+            targets: ".footerItem",
+            width: ["0", "33.33%"],
+            opacity: ["0", "1"],
+            duration: 1000,
+            complete: ()=>{MainMenu();},
+        }, 0)
+        initialTimeline.add({
+            targets: ".grid-elem",
+            opacity: [0, 1],
+            translateY: ["-10vh", "0"],
+            delay: anime.stagger(50, {grid: [9, 6], from: "center"}),
+        }, 0)
+    </script>
+</body>
+</html>
