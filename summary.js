@@ -123,6 +123,7 @@ function FillSummary() {
         currentContent.innerHTML = livesUsedAt[i];
         currentBPitem.appendChild(currentContent);
     }
+    livesUsedAt = [];
     currentBPitem = null;
     currentContent = null;
 }
