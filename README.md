@@ -2,6 +2,10 @@
 
 > Egy klasszikus kattintós elemekre épült reakciófejlesztő játék bonyolítások halmazával.
 
+A játékot **[ezen](https://ctt2.netlify.app/)** a linken éred el.
+
+---
+
 Az eddig tesztelt böngészők, amelyeken a játék helyesen működik:
 
 - Opera
