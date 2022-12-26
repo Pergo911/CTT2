@@ -11,5 +11,6 @@ Az eddig tesztelt böngészők, amelyeken a játék NEM működik helyesen:
 
 - Edge (visszaszámlálás bug)
 - Chrome (fps gondok)
+- Firefox (lassú setInterval)
 
 *Készítette: Probszt Gergely*
